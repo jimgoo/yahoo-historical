@@ -32,7 +32,10 @@ class Fetcher:
 
         url = self.api_url % (self.ticker, self.start, self.end, self.interval, events)
 
-        data = requests.get(url, cookies={"User-agent": "Mozilla/5.0"})
+        headers = { 'User-Agent': ''}
+        print('url', url)
+        
+        data = requests.get(url, cookies={"User-agent": "Mozilla/5.0"}, headers=headers)
         content = StringIO(data.content.decode("utf-8"))
         return pd.read_csv(content, sep=",")
 
